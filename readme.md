@@ -83,3 +83,5 @@
 * SELECT col_name, aggregate_func(col_name) FROM tableName GROUP BY col_name;
 * SELECT genre, sum(cost) FROM movies GROUP BY genre; //Will give total cost of movies according to the genre.
 * SELECT genre, sum(cost) FROM movies GROUP BY genre HAVING count( * ) > 1;
+* SELECT genre, sum(cost) FROM movies WHERE cost >= 100000 GROUP BY genre HAVING count( * ) > 1;
+* SELECT country, sum(salary) FROM Actors WHERE role = 'supporting' GROUP BY country HAVING count( * ) > 1; 
