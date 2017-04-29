@@ -65,4 +65,21 @@
 * ALTER TABLE movies DROP COLUMN ratings;
 
 
+## Common Aggregate Functions
 
+* SELECT count(col_name) FROM tableName;
+* SELECT sum(col_name) FROM tableName;
+* SELECT avg(col_name) FROM tableName;
+* SELECT max(col_name) FROM tableName;
+* SELECT min(col_name) FROM tableName;
+* The last 4 work only if all entries are int.
+* To count all the rows -> SELECT count ( * ) FROM movies; // asterix will include rows with NULL values as well. Else, use below statement.
+* To count all rows with a title not NULL -> SELECT count(title) FROM movies;
+* SELECT max(tickets), min(tickets) FROM movies;
+* SELECT count ( * ) FROM Actors WHERE country='USA'; 
+
+## Aggregates within clauses
+
+* SELECT col_name, aggregate_func(col_name) FROM tableName GROUP BY col_name;
+* SELECT genre, sum(cost) FROM movies GROUP BY genre; //Will give total cost of movies according to the genre.
+* SELECT genre, sum(cost) FROM movies GROUP BY genre HAVING count( * ) > 1;
