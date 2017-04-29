@@ -48,3 +48,21 @@
 * DELETE FROM movies; //This will delete everything
 * Delete multiple rows by -> DELETE FROM movies WHERE duration > 90;
 
+## To CREATE or DROP(delete) a new Database/table
+
+* CREATE DATABASE Ravi Theatres; //Creates a new empty db
+* DROP DATABASE Ravi's X Theatres; //To remove a database
+* CREATE TABLE tableName (colName1 Datatype, colName2 Datatype, ColName3 Datatype ...); //Creates a new table inside Ravi Theatres db
+* CREATE TABLE movies (id int, title varchar(50), genre varchar(15), duration int);
+* DROP TABLE tableName; //to remove a table from the db.
+
+## Manipulating Database using ALTER TABLE
+
+* To add, remove, modify columnns in a table.
+* ALTER TABLE tableName ADD COLUMN columnName datatype; //To add a new column to a table
+* ALTER TABLE movies ADD COLUMN ratings int; 
+* ALTER TABLE tablName DROP COLUMN columnName; //To remove a column from the table
+* ALTER TABLE movies DROP COLUMN ratings;
+
+
+
