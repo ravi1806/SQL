@@ -85,3 +85,12 @@
 * SELECT genre, sum(cost) FROM movies GROUP BY genre HAVING count( * ) > 1;
 * SELECT genre, sum(cost) FROM movies WHERE cost >= 100000 GROUP BY genre HAVING count( * ) > 1;
 * SELECT country, sum(salary) FROM Actors WHERE role = 'supporting' GROUP BY country HAVING count( * ) > 1; 
+
+## Constraints NOT NULL UNIQUE PRIMARY KEY
+
+* CREATE TABLE Promotions ( id int, name varchar(50) NOT NULL, category varchar(20) ); //Here NOT NULL is a constraint which will make sure that that column doenst have an empty value or NULL or it will throw an error.
+* CREATE TABLE Promotions ( id int, name varchar(50) NOT NULL UNIQUE, category varchar(20) );. This method is called **Column Constraint** //Unique will make sure it isnt duplicated
+* Another way of assigning constraints is to give them custom names eg. below
+* CREATE TABLE Promotions (id int, name varchar(50), category varchar(20), CONSTRAINT custom_unique_name UNIQUE (name); // where name is the col_name that needs to be applied upon. This method is called **Table Constraint** .
+* CREATE TABLE Promotions (id int, name varchar(50), category varchar(20), CONSTRAINT custom_unique_name UNIQUE (name, category);
+* CREATE TABLE Promotions (id int PRIMARY KEY, name varchar(50), category varchar(20) ); //Primary key can be assigned only once per table.
