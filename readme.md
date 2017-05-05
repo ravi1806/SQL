@@ -102,5 +102,6 @@
 * To create a foreign key in Promotions table, it is neccessary that a movies table with id col exists. eg. below
 * CREATE TABLE Movies ( id int PRIMARY KEY, title varchar(20) NOT NULL UNIQUE ); //This needs to exist before creating a reference from here
 * CREATE TABLE Promotions ( id int PRIMARY KEY, movie_id int REFERENCES movies(id), name varchar(50), category varchar(15) ); //REFERENCES movies(id) will create the foreign key. A shorter way will be REFERENCES movies.
+* Table constraint method is -> CREATE TABLE Promotions ( FOREIGN KEY (movie_id) REFERENCES movies );
 * **ORPHAN** Records are child records with a forieng key to a parent record that has been deleted.
 * colName int CHECK (duration > 0) will make sure its value is not negative.
