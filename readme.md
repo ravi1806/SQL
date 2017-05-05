@@ -94,3 +94,13 @@
 * CREATE TABLE Promotions (id int, name varchar(50), category varchar(20), CONSTRAINT custom_unique_name UNIQUE (name); // where name is the col_name that needs to be applied upon. This method is called **Table Constraint** .
 * CREATE TABLE Promotions (id int, name varchar(50), category varchar(20), CONSTRAINT custom_unique_name UNIQUE (name, category);
 * CREATE TABLE Promotions (id int PRIMARY KEY, name varchar(50), category varchar(20) ); //Primary key can be assigned only once per table.
+
+## Creating valid references between two tables usig FORIEGN KEY, Orphan records and CHECK Constraint
+
+* When creating the reference we must use the naming convention as referencedTablenameSingularized_columnname (from a Movies table, into a Promotions table, it will named as movie_id )
+* We use a FOREIGN_KEY constraint to avoid insertion of invalid data into a table and to avoid creation of ORPHAN records. (we can insert into movie_id some id which may not be present in the MOVIES table, to avoid it, we must use the FOREIGN KEY CONSTRAINT.
+* To create a foreign key in Promotions table, it is neccessary that a movies table with id col exists. eg. below
+* CREATE TABLE Movies ( id int PRIMARY KEY, title varchar(20) NOT NULL UNIQUE ); //This needs to exist before creating a reference from here
+* CREATE TABLE Promotions ( id int PRIMARY KEY, movie_id int REFERENCES movies(id), name varchar(50), category varchar(15) ); //REFERENCES movies(id) will create the foreign key. A shorter way will be REFERENCES movies.
+* **ORPHAN** Records are child records with a forieng key to a parent record that has been deleted.
+* colName int CHECK (duration > 0) will make sure its value is not negative.
