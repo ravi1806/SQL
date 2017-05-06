@@ -119,6 +119,11 @@
 * This Movies_Genres table will contain two cols of movies_id and genre_id as Foreign keys from Movies and Genres Table.
 * Refer to personal video 'sql12' for more.
 
+## 3 Different Types of Table Relationships
+
+* One to One
+* One to Many
+* Many to Many
 
 
 
