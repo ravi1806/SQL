@@ -113,4 +113,7 @@
 * First Normal Form Rule: Tables must not contain repeating groups of data in one column.
 * Second Normal Form Rule: Tables must not contain redundancy.
 * To avoid redundancy we must contain two new tables and a third table joining the two of them.
+* So drop the column genre from the Movies table using ALTER TABLE tableName DROP COLUMN colName
+* Create a new Genre table with its own id and genre.
 * 
+
