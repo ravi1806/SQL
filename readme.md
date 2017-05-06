@@ -105,3 +105,12 @@
 * Table constraint method is -> CREATE TABLE Promotions ( FOREIGN KEY (movie_id) REFERENCES movies );
 * **ORPHAN** Records are child records with a forieng key to a parent record that has been deleted.
 * colName int CHECK (duration > 0) will make sure its value is not negative.
+
+## Normalization
+
+* Eg. A movies table with id,title,genre and duration. 
+* When a movie has two or more genre, it should not be written in one column as it defies the rule 1 of Normal Form.
+* First Normal Form Rule: Tables must not contain repeating groups of data in one column.
+* Second Normal Form Rule: Tables must not contain redundancy.
+* To avoid redundancy we must contain two new tables and a third table joining the two of them.
+* 
