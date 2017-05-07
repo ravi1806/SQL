@@ -126,11 +126,11 @@
 * Many to Many
 
 
-## Inner Joins
+## Inner Joins used to join data ONLY which are associated with them in the other table. 
 
 * Given a table Movies with id,title,genre,duration and another table Reviews with id,review and movie_id(FK).
 * When we need to fetch data from muliple table, in this case to get a list of reviews for all and to get their titles we will 
-* Fetch all the reviews by SELECT reviews, movie_id FROM Reviews;
+* Fetch all the reviews by SELECT reviews, movie_id FROM Reviews;// Here only the movies with reviews will be listed as they are associated with the other table.
 * Fetch all the movie associaited titles by SELECT title FROM Movies WHERE id in (1,3,4); //which is a shortcut for WHERE id=1 OR id=3 OR id=4;
 * We can achieve this using just one query. SELECT * FROM OneTable INNER JOIN SecondTable ON OneTable.ColName = SecondTable.colName;
 * So for above eg. we can write SELECT * FROM Movies INNER JOIN Reviews ON Movies.id = Reviews.movie_id; OR the otherway around like
@@ -161,3 +161,29 @@
 * Question: First, change the query to output "Movie Title" instead of just title on the result.Next, change the id field to print "Theatre Number".Now, let's use table aliases to shorten the query. Alias Rooms to use "r" and Movies to "m".
 * Ans: SELECT m.title "Movie Title", r.id "Theatre Number", r.seats FROM Movies m INNER JOIN Rooms r ON m.id = r.movie_id WHERE r.seats > 75 ORDER BY r.seats desc;
 
+## Outer Joins to join using LEFT or RIGHT all the data from one table to the data of other table. 
+
+* Its important to mention LEFT or RIGHT before OUTER JOIN.
+* To list all movies with optional reviews -> 
+* SELECT * FROM Movies m LEFT OUTER JOIN Reviews r ON m.id = r.movie_id;
+* To list all reviews with optional movies -> 
+* SELECT * FROM Movies m RIGHT OUTER JOIN Reviews r ON m.id = r.movie_id;
+
+* Eg. Let's create a query that returns all movies with some additional data. First, create a query that returns all movies and also displays a movie's room if it's playing in a room. For this query, select everything ( * ). Now, let's select just the movie title and room id if it exists, and set a column alias for the room id to "Theatre Number". Lastly, it doesn't look like we've used table aliases with this query, which is usually a good practice. 
+* Ans: SELECT m.title, r.id "Theatre Number" FROM Movies m LEFT OUTER JOIN Rooms r on m.id = r.movie_id;
+
+* Eg2. We need to modify this query to show all the rooms and, optionally, movies if there are any playing in them.
+* Ans: SELECT m.title, r.id "Theatre Number" FROM Movies m RIGHT OUTER JOIN Rooms r on m.id = r.movie_id;
+
+## Subqueries
+
+* Subqueries are easier to read while JOINS give better performance.
+* Eg. Find sum of all sales for movies that were showing as non-cash promotions
+* Subquery method: SELECT SUM(sales) FROM Movies WHERE id IN (SELECT Movie_id FROM Promotions WHERE category= 'Non Cash');
+* Join method: SELECT SUM(m.sales) FROM Movies m INNER JOIN Promotions p ON m.id = p.movie_id WHERE p.category = 'Non Cash';
+* Syntax for subqueries:-> Filter rows that have a matching id eg. WHERE < field > IN ( subquery ). Filter rows that dont have a matchin ig eg. WHERE < field > NOT IN ( subquery );
+* To find only films that have an avg duration higher than the rest eg. SELECT * FROM Movies WHERE duration > ( SELECT AVG(duration) FROM Movies);
+* Eg. let's write a query that returns every movie_id from the Rooms table that has more than 75 seats. Next, turn this query into a subquery by wrapping it in parentheses. Then use the returned ids to find the matching movies and return their titles.
+* Ans: SELECT title FROM Movies WHERE id IN (SELECT movie_id FROM Rooms WHERE seats > 75);
+* eg. . It’d really help if we knew if any movies were playing in the rooms returned by our previous query.Add a join to the query so we can find movies playing in our rooms. Remember, not all rooms will have movies. Also, we may need to prefix the id column with the correct table name. Also return the movie title in the result. Create table aliases for both Rooms and Movies.
+* Ans: SELECT r.id, m.title FROM Rooms r LEFT OUTER JOIN Movies m ON m.id = r.movie_id WHERE seats > (SELECT AVG(seats) FROM Rooms);
