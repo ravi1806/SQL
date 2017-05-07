@@ -147,3 +147,17 @@
 * Question: Join the Movies table with the Rooms table so that we only fetch movies that have an associated room. Let's get a little more specific, and only return the movie title, the id for the room, and number of seats in the theatre. Now, let's filter the results more by only showing theatres with more than 75 seats. Remember, the WHERE clause should go after the JOIN syntax. Finally, let's sort the result by seats in the theatre from most to least seats.
 * Ans: SELECT Movies.title, Rooms.id, Rooms.seats From Movies INNER JOIN Rooms ON Movies.id = Rooms.movie_id WHERE seats > 75 ORDER BY seats DESC;
 
+* Question: First, join the Actors table with the Actors_Movies table so that only actors participating in movies are returned on the result.Next, create another INNER JOIN from the Actors_Movies table to the Movies table so that our result shows information about the movies. Now change the query to only fetch actor names and movie titles. Lastly, let's sort this query by movie title, alphabetically.
+* Ans: SELECT Actors.name, Movies.title FROM Actors INNER JOIN Actors_Movies ON Actors.id = Actors_Movies.actor_id INNER JOIN Movies ON Actors_Movies.movie_id = Movies.id ORDER BY Movies.title;
+
+## ALIAS
+
+* We can write alias for queries eg.
+* SELECT Movies.title AS films, Reviews.review AS reviews.
+* We can drop AS and write in shortcut -> SELECT Movies.title films, Revies.review reviews. //use " " for alias with space
+* WE can use Table Aliases for the Table Names eg.
+* SELECT m.title, r.review FROM Movies m INNER JOIN Reviews r ON m.id = r.movie_id ORDER BY m.title; //HERE we defined the ALIAS at FROM MOVIES m and INNER JOIN Reviews r
+
+* Question: First, change the query to output "Movie Title" instead of just title on the result.Next, change the id field to print "Theatre Number".Now, let's use table aliases to shorten the query. Alias Rooms to use "r" and Movies to "m".
+* Ans: SELECT m.title "Movie Title", r.id "Theatre Number", r.seats FROM Movies m INNER JOIN Rooms r ON m.id = r.movie_id WHERE r.seats > 75 ORDER BY r.seats desc;
+
