@@ -126,4 +126,21 @@
 * Many to Many
 
 
+# Inner Joins
+
+* Given a table Movies with id,title,genre,duration and another table Reviews with id,review and movie_id(FK).
+* When we need to fetch data from muliple table, in this case to get a list of reviews for all and to get their titles we will 
+* Fetch all the reviews by SELECT reviews, movie_id FROM Reviews;
+* Fetch all the movie associaited titles by SELECT title FROM Movies WHERE id in (1,3,4); //which is a shortcut for WHERE id=1 OR id=3 OR id=4;
+* We can achieve this using just one query. SELECT * FROM OneTable INNER JOIN SecondTable ON OneTable.ColName = SecondTable.colName;
+* So for above eg. we can write SELECT * FROM Movies INNER JOIN Reviews ON Movies.id = Reviews.movie_id; OR the otherway around like
+* SELECT * FROM Reviews INNER JOIN Movies ON Reviews.movie_id = Movies.id;
+* But we dont want all the data from these tables, we only need title and reviews so use SELECT tablOne.colName, tablTwo.colName FROM...
+* SELECT Movies.title, Reviews.review FROM Movies INNER JOIN Reviews ON Movies.id = Reviews.movie_id
+
+* In Normalization we had a MOVIES table with id,title,duration and genre table with id and name and a joining table MOVIES_GENRE with movie_id and genre_id(many to many).
+* Now to find all genres of a Movie we had to write 3 different queries eg.
+* SELECT id FROM Movies WHERE title = 'Peter Pan'; , SELECT genre_id FROM Movies_Genre WHERE id = 2; SELECT name FROM genre WHERE id IN (2,3); //this query tells the name of the genre which has id 2 or id 3.
+* All this can be written in one query as following.
+* SELECT Movies.title, Genre.name FROM Movies INNER JOIN Movies_Genre ON Movies.id = Movies_Genre.movie_id INNER JOIN Genre ON Movies_Genre.genre_id = Genre.id WHERE title = 'Peter Pan';
 
