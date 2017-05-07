@@ -144,3 +144,6 @@
 * All this can be written in one query as following.
 * SELECT Movies.title, Genre.name FROM Movies INNER JOIN Movies_Genre ON Movies.id = Movies_Genre.movie_id INNER JOIN Genre ON Movies_Genre.genre_id = Genre.id WHERE title = 'Peter Pan';
 
+* Question: Join the Movies table with the Rooms table so that we only fetch movies that have an associated room. Let's get a little more specific, and only return the movie title, the id for the room, and number of seats in the theatre. Now, let's filter the results more by only showing theatres with more than 75 seats. Remember, the WHERE clause should go after the JOIN syntax. Finally, let's sort the result by seats in the theatre from most to least seats.
+* Ans: SELECT Movies.title, Rooms.id, Rooms.seats From Movies INNER JOIN Rooms ON Movies.id = Rooms.movie_id WHERE seats > 75 ORDER BY seats DESC;
+
