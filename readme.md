@@ -126,7 +126,7 @@
 * Many to Many
 
 
-# Inner Joins
+## Inner Joins
 
 * Given a table Movies with id,title,genre,duration and another table Reviews with id,review and movie_id(FK).
 * When we need to fetch data from muliple table, in this case to get a list of reviews for all and to get their titles we will 
